@@ -27,5 +27,5 @@ spec:
    selector:
       app: simpleapp
    ports:
-      - port: 9000
-        targetPort: 9000
+      - port: 80
+        targetPort: 8000

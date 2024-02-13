@@ -18,4 +18,4 @@ simpleappapi.add_resource(Home, '/')
 # driver function 
 if __name__ == '__main__': 
 
-	simpleapp.run(debug = True, port= 9000) 
+	simpleapp.run(port= 8000) 
