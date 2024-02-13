@@ -16,9 +16,8 @@ spec:
          containers:
             - name: simpleapp
               image: asia-south1-docker.pkg.dev/simple-app-project-413304/default-artifact-registry/simpleapp
-              env:
-               - name: "PORT"
-                 value: "8000"
+              containerPort: 8000
+              
 ---
 apiVersion: v1
 kind: Service
