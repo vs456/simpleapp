@@ -15,7 +15,7 @@ spec:
       spec:
          containers:
             - name: simpleapp
-              image: gcr.io/$PROJECT_ID/$IMAGE=gcr.io/$PROJECT_ID/$IMAGE
+              image: gcr.io/simple-app-project-413304/default-artifact-registry/simpleapp
 ---
 apiVersion: v1
 kind: Service
