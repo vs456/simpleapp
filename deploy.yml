@@ -15,7 +15,7 @@ spec:
       spec:
          containers:
             - name: simpleapp
-              image: gcr.io/simple-app-project-413304/default-artifact-registry/simpleapp
+              image: asia-south1-docker.pkg.dev/simple-app-project-413304/default-artifact-registry/simpleapp
 ---
 apiVersion: v1
 kind: Service
