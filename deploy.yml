@@ -15,7 +15,7 @@ spec:
       spec:
          containers:
             - name: simpleapp
-              image: simpleapp
+              image: gcr.io/$PROJECT_ID/$IMAGE=gcr.io/$PROJECT_ID/$IMAGE
 ---
 apiVersion: v1
 kind: Service
