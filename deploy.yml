@@ -28,5 +28,5 @@ spec:
       app: simpleapp
    ports:
       - protocol: TCP
-        port: 80
+        NodePort: 80
         targetPort: 8000
