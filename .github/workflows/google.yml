@@ -11,9 +11,9 @@ env:
   GKE_CLUSTER: autopilot-cluster-1    # cluster name
   GKE_ZONE: asia-south1   # cluster zone
   IMAGE: simpleapp # image name
-  IMAGE_TAG: v1 # image tag
   GAR_ZONE: asia-south1 # artifact registry zone
   GAR_REPO: default-artifact-registry # artifact registry repository
+  DEPLOYMENT_NAME: simpleapp-gke
 
 jobs:
   setup-build-publish-deploy:
@@ -57,8 +57,16 @@ jobs:
       run: |-
         docker push "$GAR_ZONE-docker.pkg.dev/$PROJECT_ID/$GAR_REPO/$IMAGE"
 
+    # Set up kustomize
+    - name: Set up Kustomize
+      run: |-
+        curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
+        chmod u+x ./kustomize
+
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        kubectl apply -f $GAR_ZONE-docker.pkg.dev/$PROJECT_ID/$IMAGE:$GITHUB_SHA/deploy.yml
-        kubectl get pods
+        ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+        ./kustomize build . | kubectl apply -f -
+        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        kubectl get services -o wide
