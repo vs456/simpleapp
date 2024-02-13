@@ -60,5 +60,5 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        kubectl apply -f deploy.yml
+        kubectl apply -f $GAR_ZONE-docker.pkg.dev/$PROJECT_ID/$IMAGE:$GITHUB_SHA/deploy.yml
         kubectl get pods
