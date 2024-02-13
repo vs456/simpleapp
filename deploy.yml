@@ -23,10 +23,9 @@ metadata:
    name: simpleapp
    namespace: default
 spec:
-   type: NodePort
+   type: LoadBalancer
    selector:
       app: simpleapp
    ports:
       - port: 9000
         targetPort: 9000
-        nodePort: 32701
